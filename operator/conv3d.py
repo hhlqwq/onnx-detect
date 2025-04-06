@@ -104,6 +104,8 @@ if __name__ == "__main__":
     output_custom = conv_custom(input_tensor)
     
     # 比较结果
+    print(output_official.shape, output_custom.shape)
     print("输出形状是否一致:", output_official.shape == output_custom.shape)
     print("最大误差:", torch.max(torch.abs(output_official - output_custom)))
+    print("平均误差:", torch.abs(output_official-output_custom).mean())
     print("输出值是否接近:", torch.allclose(output_official, output_custom, atol=1e-4))
